@@ -1,0 +1,6 @@
+Placez ici les photos de l'équipe (format carré de préférence, min. 400x400px) :
+
+- aline.jpg   -> SELEMANI Aline
+- philip.jpg  -> Philip Nawej Kayomb
+
+Tant que ces fichiers ne sont pas ajoutés, un fond dégradé s'affiche automatiquement à la place.

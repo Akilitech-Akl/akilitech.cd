@@ -1,0 +1,12 @@
+Optionnel : le site affiche actuellement les noms des partenaires en texte
+(section "Ils nous ont fait confiance") pour rester léger et toujours lisible.
+
+Si vous voulez afficher les VRAIS logos de vos partenaires :
+1. Déposez-les ici (ex: wbi.png, auf.png, ovation.png, fmpp.png, haut-katanga.png, kcc.png, brasimba.png)
+2. Dans index.html, remplacez chaque bloc :
+     <div class="partner-logo ...">Nom du partenaire</div>
+   par :
+     <div class="partner-logo ..."><img src="assets/partners/wbi.png" alt="Nom du partenaire"></div>
+3. Dans css/style.css, ajoutez :
+     .partner-logo img{ max-height:50px; width:auto; filter:grayscale(1); opacity:.75; transition:.3s; }
+     .partner-logo:hover img{ filter:none; opacity:1; }

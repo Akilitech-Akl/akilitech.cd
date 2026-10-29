@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKILITECH | Pour une innovation à l'africaine</title>
+<meta name="description" content="AKILITECH, votre partenaire stratégique en coaching, formation, entrepreneuriat et gestion de projets communautaires en RDC.">
+
+<!-- Open Graph / réseaux sociaux -->
+<meta property="og:title" content="AKILITECH | Pour une innovation à l'africaine">
+<meta property="og:description" content="Coaching, formation et accompagnement à l'entrepreneuriat pour les jeunes et les organisations africaines.">
+<meta property="og:image" content="assets/img/og-cover.jpg">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  /* --- STYLE DU CHATBOT INTELLIGENT AKILITECH --- */
+  .chat-widget {
+      position: fixed;
+      bottom: 90px; /* Au-dessus du bouton WhatsApp flottant */
+      right: 20px;
+      z-index: 1000;
+      font-family: 'Poppins', sans-serif;
+  }
+  .chat-btn {
+      background: #1e3a8a;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.3s;
+  }
+  .chat-btn:hover {
+      transform: scale(1.05);
+  }
+  .chat-box {
+      display: none;
+      position: absolute;
+      bottom: 60px;
+      right: 0;
+      width: 340px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+  }
+  .chat-header {
+      background: #1e3a8a;
+      color: white;
+      padding: 14px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  .chat-header span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+  }
+  .chat-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+  }
+  .chat-messages {
+      height: 260px;
+      overflow-y: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #f9fafb;
+      font-size: 0.9rem;
+  }
+  .message {
+      padding: 8px 12px;
+      border-radius: 8px;
+      max-width: 85%;
+      word-wrap: break-word;
+      line-height: 1.4;
+  }
+  .message.bot {
+      background: #e5e7eb;
+      color: #1f2937;
+      align-self: flex-start;
+  }
+  .message.user {
+      background: #1e3a8a;
+      color: white;
+      align-self: flex-end;
+  }
+  .chat-input-area {
+      display: flex;
+      padding: 10px;
+      background: white;
+      border-top: 1px solid #e5e7eb;
+      gap: 8px;
+  }
+  .chat-input-area input {
+      flex: 1;
+      padding: 8px 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      outline: none;
+  }
+  .chat-input-area input:focus {
+      border-color: #1e3a8a;
+  }
+  .chat-input-area button {
+      background: #f59e0b;
+      color: #1f2937;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+  }
+  .chat-input-area button:hover {
+      background: #d97706;
+      color: white;
+  }
+
+  /* --- ANIMATION DE FRAPPE (TYPING INDICATOR) --- */
+  .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 8px 12px;
+      background: #e5e7eb;
+      border-radius: 8px;
+      align-self: flex-start;
+  }
+  .typing-dot {
+      width: 6px;
+      height: 6px;
+      background: #1f2937;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: typingAnimation 1.4s infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typingAnimation {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-3px); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== PRELOADER ===== -->
+<div id="preloader">
+  <div class="loader-logo">AKILI<span>TECH</span></div>
+  <div class="loader-bar"><span></span></div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="container header-inner">
+    <a href="#accueil" class="logo">
+      <img src="assets/img/logo.png" alt="Logo Akilitech" onerror="this.style.display='none'">
+      <span>AKILI<em>TECH</em></span>
+    </a>
+
+    <nav id="nav">
+      <ul>
+        <li><a href="#accueil" class="active">Accueil</a></li>
+        <li><a href="#apropos">Qui sommes-nous</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#programmes">Programmes</a></li>
+        <li><a href="#equipe">Équipe</a></li>
+        <li><a href="#partenaires">Partenaires</a></li>
+        <li><a href="#contact" class="btn-nav">Contactez-nous</a></li>
+      </ul>
+    </nav>
+
+    <div class="social-mini">
+      <a href="https://www.linkedin.com/company/akilitech-a-k-l" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61594848247339" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://instagram.com/akilitech_a.k.l" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://wa.me/243904983794" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+
+    <button id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO / bande déroulante d'images ===== -->
+<section id="accueil" class="hero">
+  <div class="hero-slider">
+    <div class="hero-slide slide1"></div>
+    <div class="hero-slide slide2"></div>
+    <div class="hero-slide slide3"></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content" data-aos>
+    <p class="hero-tag">✦ AKILITECH, POUR UNE INNOVATION À L'AFRICAINE ✦</p>
+    <h1>
+      <span class="typing" id="typing-text"></span>
+    </h1>
+    <p class="hero-sub">
+      AKILITECH est bien plus qu'un cabinet : c'est votre partenaire stratégique de transformation.
+      Nous propulsons les jeunes entrepreneurs, les leaders, les organisations et les communautés
+      africaines vers le succès.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary">Contactez-nous <i class="fa-solid fa-arrow-right"></i></a>
+      <a href="#services" class="btn btn-outline">Découvrir nos services</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="counter" data-target="2024">0</span>
+        <p>Année de fondation</p>
+      </div>
+      <div class="stat">
+        <span class="counter" data-target="70">0</span>+
+        <p>Jeunes accompagnés (Bootcamp)</p>
+      </div>
+      <div class="stat">
+        <span class="counter" data-target="7">0</span>
+        <p>Domaines d'expertise</p>
+      </div>
+      <div class="stat">
+        <span class="counter" data-target="8">0</span>
+        <p>Partenaires de confiance</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="#apropos" class="scroll-down" aria-label="Défiler"><i class="fa-solid fa-chevron-down"></i></a>
+</section>
+
+<!-- ===== QUI SOMMES-NOUS ===== -->
+<section id="apropos" class="section apropos">
+  <div class="container grid-2">
+    <div class="apropos-img reveal-left">
+      <img src="assets/img/about-1.jpg" alt="Session de formation Akilitech" onerror="this.parentElement.classList.add('img-fallback')">
+      <div class="img-badge">
+        <i class="fa-solid fa-award"></i>
+        <div>
+          <strong>Depuis 2024</strong>
+          <span>Leader du coaching & de la formation au Grand Katanga</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="apropos-text reveal-right">
+      <p class="eyebrow">Qui sommes-nous</p>
+      <h2>Votre partenaire pour la formation<br> et le coaching personnalisé</h2>
+      <p>
+        Coaching et formation certifiés au niveau international, adaptés à vos besoins
+        et aux réalités du terrain.
+      </p>
+      <p>
+        Sous l'égide de plusieurs experts internationaux, <strong>AKILITECH</strong> se positionne
+        comme un leader du secteur de la formation, de la gestion de projet communautaire et
+        du coaching personnalisé depuis 2024. Avec une équipe resserrée de spécialistes dédiés,
+        nous nous engageons à vous apporter une expertise pointue et un service clientèle hors pair.
+        Nous couvrons le territoire du <strong>Grand Katanga</strong>.
+      </p>
+      <ul class="check-list">
+        <li><i class="fa-solid fa-circle-check"></i> L'excellence professionnelle — méthodologies éprouvées & standards internationaux</li>
+        <li><i class="fa-solid fa-circle-check"></i> L'ancrage africain — solutions adaptées aux réalités locales</li>
+        <li><i class="fa-solid fa-circle-check"></i> L'innovation utile — résultats concrets, mesurables et durables</li>
+      </ul>
+      <a href="#contact" class="btn btn-primary">Discutons de votre projet</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NOTRE MISSION ===== -->
+<section class="section mission">
+  <div class="container">
+    <div class="section-head light">
+      <p class="eyebrow">Notre mission</p>
+      <h2>Un impact réel, un accompagnement humain</h2>
+      <p class="section-desc">
+        Nous travaillons sur les besoins réels du client pour avoir une prise de conscience,
+        et par la suite une transformation avec un impact à long terme.
+      </p>
+    </div>
+
+    <div class="mission-cards">
+      <div class="mission-card reveal-up">
+        <div class="icon-circle"><i class="fa-solid fa-earth-africa"></i></div>
+        <h3>Innovation adaptée</h3>
+        <p>Apporter à nos clients une innovation adaptée à la réalité africaine.</p>
+      </div>
+      <div class="mission-card reveal-up" style="--d:0.15s">
+        <div class="icon-circle"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Impact mesurable</h3>
+        <p>Augmenter de façon réelle et palpable les indicateurs dans le cadre de la gestion des projets.</p>
+      </div>
+      <div class="mission-card reveal-up" style="--d:0.3s">
+        <div class="icon-circle"><i class="fa-solid fa-people-group"></i></div>
+        <h3>Transformation durable</h3>
+        <p>Faire évoluer les jeunes, les leaders et les communautés vers un succès pérenne.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES / DOMAINES D'EXPERTISE ===== -->
+<section id="services" class="section services">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Nos domaines d'expertise</p>
+      <h2>Des solutions complètes pour votre transformation</h2>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal-up">
+        <div class="service-icon"><i class="fa-solid fa-comments"></i></div>
+        <h3>Coaching & Soft Skills</h3>
+        <p>Gestion des conflits,Coaching de vie individuel, coaching entrepreneurial, leadership transformationnel, intelligence émotionnelle et gestion du temps.</p>
+      </div>
+      <div class="service-card reveal-up" style="--d:0.1s">
+        <div class="service-icon"><i class="fa-solid fa-trophy"></i></div>
+        <h3>Performance Collectivités & Entreprises</h3>
+        <p>Coaching d'équipes (cohésion et culture du résultat), gestion des ressources humaines (GRH) et employabilité des jeunes étudiants.</p>
+      </div>
+      <div class="service-card reveal-up" style="--d:0.2s">
+        <div class="service-icon"><i class="fa-solid fa-diagram-project"></i></div>
+        <h3>Gestion de Projets & Impact Social</h3>
+        <p>Conception et exécution de programmes RSE, formation des formateurs (ToT) et autonomisation économique (via les AVEC).</p>
+      </div>
+      <div class="service-card reveal-up" style="--d:0.3s">
+        <div class="service-icon"><i class="fa-solid fa-microchip"></i></div>
+        <h3>Technologie & Modernisation</h3>
+        <p>Formations pratiques à l'utilisation stratégique et éthique de l'Intelligence Artificielle (IA).</p>
+      </div>
+      <div class="service-card reveal-up" style="--d:0.4s">
+        <div class="service-icon"><i class="fa-solid fa-file-signature"></i></div>
+        <h3>Régularisation & Structure</h3>
+        <p>Conception, création juridique de sociétés/ASBL, et accompagnement en gestion fiscale/taxes.</p>
+      </div>
+      <div class="service-card reveal-up" style="--d:0.5s">
+        <div class="service-icon"><i class="fa-solid fa-passport"></i></div>
+        <h3>Immigration</h3>
+        <p>Obtention de visa pour la Chine et démarches administratives associées.</p>
+      </div>
+    </div>
+
+    <div class="services-mini">
+      <p class="eyebrow">Nos services</p>
+      <div class="mini-list">
+        <span><i class="fa-solid fa-check"></i> Coaching de vie individuel</span>
+        <span><i class="fa-solid fa-check"></i> Coaching en entrepreneuriat & éducation financière</span>
+        <span><i class="fa-solid fa-check"></i> Coaching collectif</span>
+        <span><i class="fa-solid fa-check"></i> Gestion & exécution de projets RSE</span>
+        <span><i class="fa-solid fa-check"></i> Autonomisation économique communautaire (AVEC)</span>
+        <span><i class="fa-solid fa-check"></i> Formation des formateurs</span>
+        <span><i class="fa-solid fa-check"></i> Formations</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA CREEZ VOTRE ENTREPRISE ===== -->
+<section class="cta-banner">
+  <div class="container cta-inner">
+    <div class="cta-text">
+      <p class="eyebrow eyebrow-yellow">Régularisation & structure</p>
+      <h2>Créez votre entreprise <br> à partir de <span class="price">500 $</span></h2>
+      <p>« Boostez votre projet avec nos solutions dans la formalisation de votre entreprise. »</p>
+      <div class="cta-tags">
+        <span><i class="fa-solid fa-scale-balanced"></i> Choix de la forme juridique</span>
+        <span><i class="fa-solid fa-stamp"></i> RCCM</span>
+        <span><i class="fa-solid fa-id-card"></i> ID Nationale</span>
+      </div>
+      <a href="#contact" class="btn btn-yellow pulse">Obtenez votre entreprise <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="cta-quote">
+      <i class="fa-solid fa-quote-left"></i>
+      <p>Catalyseur de Succès.<br>Créateur d'Impact.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROGRAMMES / REALISATIONS ===== -->
+<section id="programmes" class="section programmes">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Nos programmes</p>
+      <h2>Bootcamp sur l'employabilité des jeunes</h2>
+      <p class="section-desc">Par Aline Selemani (Nyota) — en partenariat avec Wallonie-Bruxelles International — période Novembre-Décembre 2025.</p>
+    </div>
+
+    <div class="programme-wrap">
+      <div class="programme-gallery reveal-left">
+        <div class="gallery-main">
+          <img src="assets/img/programme-1.jpg" alt="Bootcamp Akilitech" id="galleryMain" onerror="this.style.display='none'">
+        </div>
+        <div class="gallery-thumbs">
+          <img src="assets/img/programme-1.jpg" class="active" onerror="this.style.display='none'">
+          <img src="assets/img/programme-2.jpg" onerror="this.style.display='none'">
+          <img src="assets/img/programme-3.jpg" onerror="this.style.display='none'">
+          <img src="assets/img/programme-4.jpg" onerror="this.style.display='none'">
+        </div>
+      </div>
+
+      <div class="programme-content reveal-right">
+        <h3>Deux axes de formation</h3>
+        <div class="axe-block">
+          <h4><i class="fa-solid fa-briefcase"></i> Axe 1 : Employabilité</h4>
+          <p>Motivation personnelle · Technique de recherche d'emploi · Rédaction CV & lettre de motivation ·
+            Simulation d'entretien d'embauche · Séminaire partage d'expérience RH · Coaching individuel</p>
+        </div>
+        <div class="axe-block">
+          <h4><i class="fa-solid fa-rocket"></i> Axe 2 : Pré-incubation</h4>
+          <p>Idéation · Créer / réussir son entreprise · Intrapreneuriat · Élaboration d'un business plan ·
+            Atelier fabrication d'un MVP · Propriété intellectuelle · Compétences numériques : IA & déontologie</p>
+        </div>
+        <div class="programme-stats">
+          <div><strong>70</strong><span>bénéficiaires — jeunes de la communauté Kico (Kipushi)</span></div>
+          <div><strong>4j/sem</strong><span>de 10h à 15h</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EQUIPE ===== -->
+<section id="equipe" class="section equipe">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Notre équipe</p>
+      <h2>Des experts à votre écoute</h2>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card reveal-up">
+        <div class="team-photo">
+          <img src="assets/team/aline.jpg" alt="Aline Selemani" onerror="this.parentElement.classList.add('img-fallback')">
+        </div>
+        <h3>SELEMANI Aline</h3>
+        <span class="role">DIRECTRICE ,Experte internationale en entrepreneuriat</span>
+        <p>Coach de vie certifiée et spécialisée, coaching scolaire, développement personnel et conseillère en Ressources Humaines.</p>
+        <div class="team-social">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="mailto:info@akilitech.org" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div class="team-card reveal-up" style="--d:0.15s">
+        <div class="team-photo">
+          <img src="assets/team/philip.jpg" alt="Philip Nawej Kayomb" onerror="this.parentElement.classList.add('img-fallback')">
+        </div>
+        <h3>Philip Nawej Kayomb</h3>
+        <span class="role">Coach, Designer,Developpeur , marketeur</span>
+        <p>Spécialiste en communication digitale et outils de suivi numérique.</p>
+        <div class="team-social">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="mailto:info@akilitech.org" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="team-card reveal-up" style="--d:0.15s">
+        <div class="team-photo">
+          <img src="assets/team/alain.jpg" alt="kazadi Mbolela alain" onerror="this.parentElement.classList.add('img-fallback')">
+        </div>
+        <h3>Kazadi Mbolela Alain</h3>
+        <span class="role">Assistant, ingénieur réseau</span>
+        <p>Assistant administratif et digital.</p>
+        <div class="team-social">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="mailto:info@akilitech.org" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION PARTENAIRES -->
+<section id="partenaires" class="section partenaires" style="padding: 60px 0;">
+  <div class="container">
+    <div class="section-head" style="text-align: center; margin-bottom: 40px;">
+      <p class="eyebrow" style="color: #64748b; font-weight: 600; text-transform: uppercase; font-size: 14px; margin-bottom: 8px;">ILS NOUS ONT FAIT CONFIANCE</p>
+      <h2 style="font-size: 32px; font-weight: 700; color: #0f172a;">Nos partenaires</h2>
+    </div>
+
+    <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+      <div class="partner-card" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center;">
+        <img src="assets/partners/wbi.png" alt="Wallonie-Bruxelles International" style="max-width: 130px; max-height: 60px; object-fit: contain; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.style.display='none'">
+        <span style="font-size: 14px; font-weight: 600; color: #334155;">Wallonie-Bruxelles International</span>
+      </div>
+      <div class="partner-card" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center;">
+        <img src="assets/partners/auf.png" alt="AUF" style="max-width: 130px; max-height: 60px; object-fit: contain; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.style.display='none'">
+        <span style="font-size: 14px; font-weight: 600; color: #334155;">AUF</span>
+      </div>
+      <div class="partner-card" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center;">
+        <img src="assets/partners/ovation.png" alt="Ovation" style="max-width: 130px; max-height: 60px; object-fit: contain; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.style.display='none'">
+        <span style="font-size: 14px; font-weight: 600; color: #334155;">Ovation</span>
+      </div>
+      <div class="partner-card" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center;">
+        <img src="assets/partners/fondation-pande.png" alt="Fondation Maman Pierrette Pande" style="max-width: 130px; max-height: 60px; object-fit: contain; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.style.display='none'">
+        <span style="font-size: 14px; font-weight: 600; color: #334155;">Fondation Maman Pierrette Pande</span>
+      </div>
+      <div class="partner-card" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center;">
+        <img src="assets/partners/haut-katanga.png" alt="Province du Haut-Katanga" style="max-width: 130px; max-height: 60px; object-fit: contain; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.style.display='none'">
+        <span style="font-size: 14px; font-weight: 600; color: #334155;">Province du Haut-Katanga</span>
+      </div>
+      <div class="partner-card" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center;">
+        <img src="assets/partners/brasimba.png" alt="Brasimba" style="max-width: 130px; max-height: 60px; object-fit: contain; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.style.display='none'">
+        <span style="font-size: 14px; font-weight: 600; color: #334155;">Brasimba</span>
+      </div>
+      <div class="partner-card" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center;">
+        <img src="assets/partners/unilu.png" alt="UNILU" style="max-width: 130px; max-height: 60px; object-fit: contain; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.style.display='none'">
+        <span style="font-size: 14px; font-weight: 600; color: #334155;">UNILU</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEMOIGNAGES CLIENTS ===== -->
+<section id="temoignages" class="section temoignages" style="background-color: #f9f9fa; padding: 60px 0;">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Ils parlent de nous</p>
+      <h2>Ce que disent nos clients</h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+      <div class="reveal-up" style="background: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; position: relative;">
+        <a href="https://www.linkedin.com/company/akilitech-a-k-l" target="_blank" rel="noopener" style="position: absolute; top: 20px; right: 20px; color: #0077b5; font-size: 1.3em;" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <img src="assets/img/temoignage1.jpg" alt="Stone Beya" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #f4f4f4;">
+        <div style="color: #f1c40f; margin-bottom: 15px;">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p style="font-style: italic; color: #555; margin-bottom: 20px;">"Grâce à la formation en Finances Personnelles, j'ai pu restructurer mon budget. L'équipe d'Akilitech est très professionnelle !"</p>
+        <h4 style="margin: 0; font-size: 1.1em; color: #222;">Stone Beya</h4>
+        <span style="font-size: 0.9em; color: #777;">Entrepreneur</span>
+      </div>
+
+      <div class="reveal-up" style="--d:0.15s; background: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; position: relative;">
+        <a href="https://www.facebook.com/profile.php?id=61594848247339" target="_blank" rel="noopener" style="position: absolute; top: 20px; right: 20px; color: #1877f2; font-size: 1.3em;" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <img src="assets/img/temoignage2.jpg" alt="Vivianne Lunda" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #f4f4f4;">
+        <div style="color: #f1c40f; margin-bottom: 15px;">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p style="font-style: italic; color: #555; margin-bottom: 20px;">"L'accompagnement pour l'obtention de notre ARSP a été rapide et sans faille. Je recommande vivement leurs services."</p>
+        <h4 style="margin: 0; font-size: 1.1em; color: #222;">Vivianne Lunda</h4>
+        <span style="font-size: 0.9em; color: #777;">Gérante de PME</span>
+      </div>
+
+      <div class="reveal-up" style="--d:0.3s; background: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; position: relative;">
+        <a href="https://x.com/AkilitechRDC" target="_blank" rel="noopener" style="position: absolute; top: 20px; right: 20px; color: #000000; font-size: 1.3em;" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <img src="assets/img/temoignage3.jpg" alt="Remy Kunga" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #f4f4f4;">
+        <div style="color: #f1c40f; margin-bottom: 15px;">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p style="font-style: italic; color: #555; margin-bottom: 20px;">"Le Bootcamp sur l'employabilité m'a donné toutes les clés pour réussir mes entretiens. Une expérience transformationnelle."</p>
+        <h4 style="margin: 0; font-size: 1.1em; color: #222;">Remy Kunga</h4>
+        <span style="font-size: 0.9em; color: #777;">Jeune diplômé</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="section contact">
+  <div class="container grid-2">
+    <div class="contact-info reveal-left">
+      <p class="eyebrow">Contact</p>
+      <h2>Prêt à passer à l'action ?<br>Contactez-nous !</h2>
+      <p class="section-desc">Notre équipe vous répond rapidement pour discuter de votre projet.</p>
+
+      <div class="info-list">
+        <div class="info-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <strong>Téléphone</strong>
+            <a href="tel:+243904983794">+243 90 49 83 794</a>
+            <a href="tel:+243976494507">+243 97 64 94 507</a>
+            <a href="tel:+32496882903">+32 496 882 903</a>
+            <a href="tel:+243896628382">+243 89 66 28 382</a>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fa-solid fa-envelope"></i>
+          <div>
+            <strong>Email</strong>
+            <a href="mailto:info@akilitech.org">info@akilitech.org</a>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <strong>Adresse</strong>
+            <span>N°46 E, Av Yav Tshibal, Golf Kabulameshi, C/Annexe, Ville de Lubumbashi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal-right" id="contactForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Nom complet</label>
+          <input type="text" id="name" name="name" required placeholder="Votre nom">
+        </div>
+        <div class="form-group">
+          <label for="phone">Téléphone</label>
+          <input type="tel" id="phone" name="phone" placeholder="+243 ...">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="vous@exemple.com">
+      </div>
+      <div class="form-group">
+        <label for="subject">Sujet</label>
+        <input type="text" id="subject" name="subject" placeholder="Objet de votre message">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required placeholder="Votre message..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary full">Envoyer le message <i class="fa-solid fa-paper-plane"></i></button>
+      <p class="form-note" id="formNote"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <a href="#accueil" class="logo">
+        <img src="assets/img/logo.png" alt="Logo Akilitech" onerror="this.style.display='none'">
+        <span>AKILI<em>TECH</em></span>
+      </a>
+      <p>Votre partenaire stratégique de transformation. Coaching, formation et accompagnement à l'entrepreneuriat pour une innovation à l'africaine.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#apropos">Qui sommes-nous</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#programmes">Programmes</a></li>
+        <li><a href="#equipe">Équipe</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Nos expertises</h4>
+      <ul>
+        <li>Coaching & Soft Skills</li>
+        <li>Performance & Entreprises</li>
+        <li>Gestion de Projets & RSE</li>
+        <li>Technologie & IA</li>
+        <li>Régularisation & Structure</li>
+        <li>Immigration</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><i class="fa-solid fa-phone"></i> +243 90 49 83 794</li>
+        <li><i class="fa-solid fa-envelope"></i> info@akilitech.org</li>
+        <li><i class="fa-solid fa-location-dot"></i> Lubumbashi, RDC</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; <span id="year"></span> AKILITECH — Tous droits réservés.</p>
+  </div>
+</footer>
+
+<!-- WIDGET CHATBOT INTELLIGENT AKILITECH -->
+<div class="chat-widget">
+    <button class="chat-btn" onclick="toggleChat()">💬 Discuter avec Akilitech</button>
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+            <span><i class="fa-solid fa-robot"></i> Assistant Akilitech</span>
+            <button class="chat-close" onclick="toggleChat()">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">Bonjour ! Posez-moi vos questions sur nos services, l'ARSP, la formation GRH ou notre adresse à Lubumbashi. Je vous réponds instantanément !</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Écrivez votre message..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Envoyer</button>
+        </div>
+    </div>
+</div>
+
+<!-- Boutons flottants -->
+<a href="https://wa.me/243904983794" target="_blank" rel="noopener" class="float-whatsapp" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<button id="backToTop" aria-label="Retour en haut"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="js/script.js"></script>
+<script>
+    // Logique fluide et naturelle du Chatbot Akilitech
+    function toggleChat() {
+        const box = document.getElementById('chatBox');
+        box.style.display = box.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    }
+
+    function getTypingIndicatorHtml() {
+        return `
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        `;
+    }
+
+    function sendMessage() {
+        const inputField = document.getElementById('userInput');
+        const text = inputField.value.trim();
+        if (text === '') return;
+
+        const messages = document.getElementById('chatMessages');
+        
+        messages.innerHTML += `<div class="message user">${text}</div>`;
+        inputField.value = '';
+        messages.scrollTop = messages.scrollHeight;
+
+        messages.innerHTML += getTypingIndicatorHtml();
+        messages.scrollTop = messages.scrollHeight;
+
+        setTimeout(() => {
+            let botReply = getSmartReply(text);
+
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) indicator.remove();
+
+            messages.innerHTML += `<div class="message bot">${botReply}</div>`;
+            messages.scrollTop = messages.scrollHeight;
+        }, 1000);
+    }
+
+    function getSmartReply(input) {
+        const msg = input.toLowerCase();
+
+        // Bloc adresse et contacts réutilisable pour les services
+        const fullContacts = "<br><br>📍 Adresse : N°46 E, Av. Yav Tshibal, Golf Kabulameshi, Lubumbashi.<br>📱 WhatsApp : +243 90 49 83 794<br>📞 **Autres numéros : +243 97 64 94 507, +243 89 66 28 382<br>📧 **E-mails :** info@akilitech.org, info@akilitech.org, philipe@akilitech.org";
+
+        // 1. SALUTATION POLITESSES
+        if (msg.includes('bonjour') || msg.includes('salut') || msg.includes('hello') || msg.includes('bonsoir')) {
+            return "Bonjour Madame (Monsieur) ! Que puis-je faire pour vous aujourd'hui chez Akilitech ?";
+        }
+
+        // 2. LISTE COMPLÈTE DES SERVICES
+        else if (msg.includes('savoir plus') || msg.includes('vos services') || msg.includes('nos services') || msg.includes('faites') || msg.includes('fait ici') || msg.includes('proposez')) {
+            return "Voici l'ensemble de nos domaines d'expertise chez Akilitech :<br><br>1️⃣ Régularisation & Création d'Entreprise(Création dès (500) $, obtention ARSP à 100 $)<br>2️⃣ Abonnement Mensuel Administratif & Fiscaux (DGI, CNSS, ONEM dès 80 $/mois)<br>3️Immigration Professionnelle (Work Permits, visas RDC & Chine, cartes de séjour)<br>4️⃣ **Formations Certifiantes** (GRH, Finances Personnelles, Intelligence Artificielle)<br>5️⃣ **Coaching & Soft Skills** (Leadership, Coaching entrepreneurial, Gestion du temps)<br>6️⃣ **Gestion de Projets & Impact Social** (Programmes RSE, ToT, AVEC)<br><br>Lequel de ces services vous intéresse ?";
+        }
+
+        // 3. FORMATION GRH
+        else if (msg.includes('grh') || msg.includes('ressources humaines') || msg.includes('payroll') || msg.includes('décompte')) {
+            return "La Formation GRH intense (Calcul des Décomptes, Payroll & IA RH) dure 3 jours.<br><br>💰 Tarifs :Inscription : 20 $\vert{} Formation : 150$<br>📅 Dates : Du 10 au 12 Novembre (Places limitées !)" + fullContacts;
+        }
+
+        // 4. CERTIFICAT ARSP
+        else if (msg.includes('arsp') || msg.includes('sous-traitance') || msg.includes('certificat')) {
+            return "Pour l'ARSP, nous constituons et suivons votre dossier jusqu'à l'obtention de votre certificat d'éligibilité.<br><br>💰 Tarif fixe :100 $ seulement !" + fullContacts;
+        }
+
+        // 5. IMMIGRATION, PERMIS ET VISAS
+        else if (msg.includes('permit') || msg.includes('permis') || msg.includes('immigration') || msg.includes('visa') || msg.includes('séjour') || msg.includes('sejour')) {
+            return "Pour l'Immigration Professionnelle, nous gérons vos dossiers :<br><br>🔹 Work Permit (Permis de travail)<br>🔹 Visas congolais & cartes de séjour professionnel<br>🔹 Visas pour la Chine" + fullContacts;
+        }
+
+        // 6. DEMANDE SPÉCIFIQUE D'ADRESSE ET CONTACTS
+        else if (msg.includes('adress') || msg.includes('adresse') || msg.includes('ou') || msg.includes('où') || msg.includes('situé') || msg.includes('situe') || msg.includes('bureau') || msg.includes('lubumbashi') || msg.includes('golf') || msg.includes('siège') || msg.includes('siege') || msg.includes('contact') || msg.includes('telephone') || msg.includes('téléphone') || msg.includes('numéro') || msg.includes('numero') || msg.includes('whatsapp') || msg.includes('email') || msg.includes('mail')) {
+            return "Pour toute information complémentaire ou pour passer à nos bureaux, contactez-nous :" + fullContacts;
+        }
+
+        // RÉPONSE PAR DÉFAUT
+        else {
+            return "Merci pour votre message ! Pour une assistance rapide, contactez-nous :" + fullContacts;
+        }
+    }
+</script>
+</body>
+</html>

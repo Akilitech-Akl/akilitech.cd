@@ -1,0 +1,14 @@
+Ce dossier attend les images suivantes (mêmes noms de fichiers) :
+
+- hero-1.jpg, hero-2.jpg, hero-3.jpg   -> 3 photos pour le carrousel du haut (ex: vos photos de formation/coaching)
+- about-1.jpg                          -> photo "Qui sommes-nous" (ex: capture de la salle de formation)
+- programme-1.jpg à programme-4.jpg    -> photos du Bootcamp employabilité (galerie)
+- quote-bg.jpg                         -> photo de fond pour la section citation
+- og-cover.jpg                         -> image utilisée quand le lien est partagé sur Facebook/LinkedIn/WhatsApp (1200x630px conseillé)
+
+logo.png et favicon.png contiennent déjà votre vrai logo Akilitech (fond transparent),
+extrait de votre fichier "LOGO AKILITECH.png". Remplacez-les par une version haute résolution
+si vous en obtenez une un jour (mêmes noms de fichiers).
+
+Astuce : gardez des noms de fichiers identiques pour ne rien changer dans le code,
+ou modifiez les chemins dans index.html / css/style.css si vous préférez d'autres noms.
