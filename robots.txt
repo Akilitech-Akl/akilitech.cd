@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /apercu/
 
 Sitemap: https://akilitech.org/sitemap.xml

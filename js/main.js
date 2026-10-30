@@ -223,18 +223,4 @@
     });
   };
 
-  /* Sélecteur de police (aperçu) */
-  var fs = document.getElementById('fontSwitch');
-  if (fs) {
-    var saved = null;
-    try { saved = localStorage.getItem('akl-font'); } catch (e) {}
-    function applyFont(f) {
-      document.documentElement.classList.remove('font-a', 'font-b', 'font-c');
-      document.documentElement.classList.add(f);
-      fs.querySelectorAll('button').forEach(function (b) { b.classList.toggle('on', b.dataset.f === f); });
-      try { localStorage.setItem('akl-font', f); } catch (e) {}
-    }
-    if (saved) applyFont(saved);
-    fs.querySelectorAll('button').forEach(function (b) { b.addEventListener('click', function () { applyFont(b.dataset.f); }); });
-  }
 })();
