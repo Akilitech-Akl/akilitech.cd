@@ -1,4 +1,4 @@
-/* AKILITECH — interactions du site */
+/* NEW VIALO — interactions du site */
 (function () {
   'use strict';
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -128,15 +128,15 @@
       f.setAttribute('allowfullscreen', '');
       if (type === 'linkedin') {
         f.src = 'https://www.linkedin.com/embed/feed/update/' + it.trim();
-        f.height = 620; f.title = 'Publication LinkedIn d\'AKILITECH';
+        f.height = 620; f.title = 'Publication LinkedIn de NEW VIALO';
       } else if (type === 'instagram') {
         f.src = 'https://www.instagram.com/p/' + it.trim() + '/embed/captioned/';
-        f.height = 640; f.title = 'Publication Instagram d\'AKILITECH';
+        f.height = 640; f.title = 'Publication Instagram de NEW VIALO';
         f.setAttribute('scrolling', 'no');
       } else if (type === 'facebook') {
         card.style.maxWidth = '500px'; card.style.width = '100%';
         f.src = 'https://www.facebook.com/plugins/page.php?href=' + encodeURIComponent(it.trim()) + '&tabs=timeline&width=500&height=720&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&locale=fr_FR';
-        f.height = 720; f.title = 'Page Facebook d\'AKILITECH';
+        f.height = 720; f.title = 'Page Facebook de NEW VIALO';
         f.setAttribute('scrolling', 'no');
       }
       var sk = document.createElement('div'); sk.className = 'feed-skeleton';
@@ -201,7 +201,7 @@
         note.textContent = 'Message envoyé. Nous revenons vers vous rapidement.';
         form.reset();
       }).catch(function () {
-        var t = 'Bonjour Akilitech, je suis ' + nom.value.trim() + '. Besoin : ' + besoin + '. ' + msg.value.trim();
+        var t = 'Bonjour New Vialo, je suis ' + nom.value.trim() + '. Besoin : ' + besoin + '. ' + msg.value.trim();
         note.classList.add('err');
         note.innerHTML = 'L\'envoi n\'a pas abouti. Envoyez le même message <a href="https://wa.me/243904983794?text=' + encodeURIComponent(t) + '" target="_blank" rel="noopener">sur WhatsApp</a> ou à <a href="mailto:info@akilitech.org">info@akilitech.org</a>.';
       }).then(function () { btn.disabled = false; btn.innerHTML = label; });

@@ -1,5 +1,5 @@
 /* =========================================================
-   AKILITECH — style.css (version 3, inspirée du site d'origine)
+   NEW VIALO — style.css (version 3, inspirée du site d'origine)
    ========================================================= */
 
 :root{
@@ -85,7 +85,7 @@ h1,h2,h3,h4{ font-family:var(--font-head); line-height:1.15; font-weight:var(--h
 #header.scrolled{ background:rgba(22,40,63,.96); padding:10px 0; backdrop-filter:blur(8px); box-shadow:0 10px 30px rgba(0,0,0,.15); }
 .header-inner{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
 .logo{ display:flex; align-items:center; gap:10px; font-family:var(--font-head); font-weight:800; font-size:1.35rem; color:#fff; letter-spacing:.02em; }
-.logo img{ height:40px; width:auto; background:rgba(255,255,255,.92); border-radius:10px; padding:3px; }
+.logo img{ height:44px; width:auto; background:#fff; border-radius:50%; padding:2px; }
 .logo em{ font-style:normal; color:var(--yellow); }
 #nav ul{ display:flex; align-items:center; gap:28px; }
 #nav a{ color:#fff; font-weight:600; font-size:.93rem; position:relative; padding:4px 0; }

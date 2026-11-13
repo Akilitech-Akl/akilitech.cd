@@ -1,4 +1,4 @@
-/* Akili, assistant automatique d'AKILITECH
+/* Akili, assistant automatique de NEW VIALO
    Fonctionne entièrement dans le navigateur : base de connaissances, compréhension
    tolérante aux fautes, suivi du contexte, parcours guidés et prise de contact. */
 (function () {
@@ -136,7 +136,7 @@
     keepTopic: true,
     main: function (q) {
       var hi = /mbote|sango/.test(q) ? 'Mbote !' : /jambo|habari|hujambo|mambo/.test(q) ? 'Jambo !' : /bonsoir/.test(q) ? 'Bonsoir !' : 'Bonjour !';
-      return { say: [hi + ' Je suis Akili, l\'assistant automatique d\'AKILITECH. Quelle démarche puis-je vous expliquer ?'] };
+      return { say: [hi + ' Je suis Akili, l\'assistant automatique de NEW VIALO. Quelle démarche puis-je vous expliquer ?'] };
     }
   });
   topic('cava', {
@@ -157,12 +157,12 @@
   topic('bot', {
     kw: ['robot', 'bot', 'humain', 'intelligence artificielle', 'ia', 'chatgpt', 'qui es tu', 'tu es qui', 'vrai personne', 'une personne', 'automatique', 'akili'],
     keepTopic: true,
-    main: { say: ['Je suis un assistant automatique : je connais bien les services d\'AKILITECH, mais je ne remplace pas un conseiller. Pour un dossier précis, l\'équipe vous répond sur WhatsApp ou vous rappelle.'], chips: [CALLBACK, { l: 'Voir les services', v: 'services' }] }
+    main: { say: ['Je suis un assistant automatique : je connais bien les services de NEW VIALO, mais je ne remplace pas un conseiller. Pour un dossier précis, l\'équipe vous répond sur WhatsApp ou vous rappelle.'], chips: [CALLBACK, { l: 'Voir les services', v: 'services' }] }
   });
 
   topic('about', {
     kw: ['akilitech c est quoi', 'qui etes vous', 'vous etes qui', 'presentation', 'a propos', 'votre entreprise', 'votre cabinet', 'new vialo', 'depuis quand', 'histoire', 'cabinet'],
-    main: { say: ['AKILITECH est un cabinet de solutions administratives et RH, basé à Lubumbashi et créé en 2024. C\'est un département de NEW VIALO SARLU.', 'Notre rôle : vous décharger des démarches. Création de société, documents officiels, calcul des taxes, contacts avec les services de l\'État, mais aussi visas, permis de travail, formation et coaching.'], chips: [{ l: 'Nos services', v: 'services' }, { l: 'L\'équipe', v: 'equipe' }, { l: 'Nos partenaires', v: 'partenaires' }] }
+    main: { say: ['NEW VIALO est un cabinet de solutions administratives et RH, basé à Lubumbashi et créé en 2024.', 'Notre rôle : vous décharger des démarches. Création de société, documents officiels, calcul des taxes, contacts avec les services de l\'État, mais aussi visas, permis de travail, formation et coaching.'], chips: [{ l: 'Nos services', v: 'services' }, { l: 'L\'équipe', v: 'equipe' }, { l: 'Nos partenaires', v: 'partenaires' }] }
   });
   topic('services', {
     kw: ['service', 'que faites vous', 'vous faites quoi', 'proposez', 'offre', 'activite', 'domaine', 'aide', 'help', 'menu', 'quoi'],
@@ -354,7 +354,7 @@
   });
   topic('emploi', {
     kw: ['emploi', 'travail', 'job', 'stage', 'stagiaire', 'cv', 'candidature', 'postuler', 'recrutez', 'offre d emploi', 'chercher du travail'],
-    main: { say: ['AKILITECH ne publie pas d\'offres d\'emploi. Nous animons en revanche des programmes d\'employabilité (recherche d\'emploi, CV, entretiens) avec nos partenaires : suivez nos pages pour ne pas manquer les prochaines sessions.'], chips: [{ l: 'Nos actualités', v: '@go-actualites' }, { l: 'Formations', v: 'formation' }] }
+    main: { say: ['NEW VIALO ne publie pas d\'offres d\'emploi. Nous animons en revanche des programmes d\'employabilité (recherche d\'emploi, CV, entretiens) avec nos partenaires : suivez nos pages pour ne pas manquer les prochaines sessions.'], chips: [{ l: 'Nos actualités', v: '@go-actualites' }, { l: 'Formations', v: 'formation' }] }
   });
 
   topic('tarifs', {
@@ -494,7 +494,7 @@
     if (S.misses >= 2) {
       S.misses = 0;
       return {
-        say: ['Je n\'ai pas la réponse à cette question, mais un conseiller l\'aura. Envoyez-la directement sur WhatsApp, elle est déjà rédigée :' + '<br>' + waBtn('Bonjour Akilitech, j\'ai une question : ' + text, 'Envoyer ma question')],
+        say: ['Je n\'ai pas la réponse à cette question, mais un conseiller l\'aura. Envoyez-la directement sur WhatsApp, elle est déjà rédigée :' + '<br>' + waBtn('Bonjour New Vialo, j\'ai une question : ' + text, 'Envoyer ma question')],
         chips: [CALLBACK, { l: 'Revenir au menu', v: '@menu', ghost: true }]
       };
     }
@@ -570,7 +570,7 @@
     }
   }
   function leadSummary() {
-    return 'Bonjour Akilitech, je suis ' + S.lead.nom + ' (' + S.lead.tel + '). Mon besoin : ' + S.lead.besoin;
+    return 'Bonjour New Vialo, je suis ' + S.lead.nom + ' (' + S.lead.tel + '). Mon besoin : ' + S.lead.besoin;
   }
   function sendLead() {
     S.flow = null;
@@ -593,13 +593,13 @@
   }
 
   var WA_TEXT = {
-    'catalogue': 'Bonjour Akilitech, pouvez-vous m\'envoyer votre catalogue de formations ?',
-    'grh': 'Bonjour Akilitech, je souhaite m\'inscrire à la formation en GRH.',
-    'conflits': 'Bonjour Akilitech, je souhaite m\'inscrire à la formation en gestion des conflits.',
-    'scolaire': 'Bonjour Akilitech, je souhaite inscrire mon enfant au coaching scolaire.',
-    'coaching': 'Bonjour Akilitech, je souhaite réserver une séance de coaching individuel.',
-    'visite': 'Bonjour Akilitech, je souhaite passer à votre bureau. Quand puis-je venir ?',
-    'general': 'Bonjour Akilitech, '
+    'catalogue': 'Bonjour New Vialo, pouvez-vous m\'envoyer votre catalogue de formations ?',
+    'grh': 'Bonjour New Vialo, je souhaite m\'inscrire à la formation en GRH.',
+    'conflits': 'Bonjour New Vialo, je souhaite m\'inscrire à la formation en gestion des conflits.',
+    'scolaire': 'Bonjour New Vialo, je souhaite inscrire mon enfant au coaching scolaire.',
+    'coaching': 'Bonjour New Vialo, je souhaite réserver une séance de coaching individuel.',
+    'visite': 'Bonjour New Vialo, je souhaite passer à votre bureau. Quand puis-je venir ?',
+    'general': 'Bonjour New Vialo, '
   };
 
   function action(v) {
@@ -620,8 +620,8 @@
     if (a === 'permit-exp') return { say: ['Le work permit est demandé par l\'employeur, mais on peut vous aider à rassembler vos pièces et à suivre le dossier avec lui. On s\'occupe aussi de votre visa et de votre carte de séjour.'], chips: [{ l: 'Être accompagné', v: '@lead' }, { l: 'Visa RDC', v: 'visa rdc' }] };
     if (a.indexOf('wa-') === 0) {
       var key = a.slice(3), text;
-      if (key === 'diag') text = 'Bonjour Akilitech, je souhaite créer mon entreprise. ' + (S.data.summary || '');
-      else if (key === 'arsp') text = 'Bonjour Akilitech, je souhaite obtenir le certificat ARSP pour mon entreprise.';
+      if (key === 'diag') text = 'Bonjour New Vialo, je souhaite créer mon entreprise. ' + (S.data.summary || '');
+      else if (key === 'arsp') text = 'Bonjour New Vialo, je souhaite obtenir le certificat ARSP pour mon entreprise.';
       else text = WA_TEXT[key] || WA_TEXT.general;
       return { say: ['Votre message est prêt :<br>' + waBtn(text)], chips: [{ l: 'Autre question', v: '@menu', ghost: true }] };
     }
@@ -669,7 +669,7 @@
   /* ---------- Ouverture, fermeture ---------- */
   function welcome() {
     botSay({
-      say: ['Bonjour, je suis Akili, l\'assistant automatique d\'AKILITECH.', 'Je réponds tout de suite sur nos démarches : création d\'entreprise, documents officiels, taxes, ARSP, visas, paie, formations. Que puis-je faire pour vous ?'],
+      say: ['Bonjour, je suis Akili, l\'assistant automatique de NEW VIALO.', 'Je réponds tout de suite sur nos démarches : création d\'entreprise, documents officiels, taxes, ARSP, visas, paie, formations. Que puis-je faire pour vous ?'],
       chips: MAIN
     });
   }
