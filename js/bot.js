@@ -162,7 +162,7 @@
 
   topic('about', {
     kw: ['akilitech c est quoi', 'qui etes vous', 'vous etes qui', 'presentation', 'a propos', 'votre entreprise', 'votre cabinet', 'new vialo', 'depuis quand', 'histoire', 'cabinet'],
-    main: { say: ['NEW VIALO est un cabinet de solutions administratives et RH, basé à Lubumbashi et créé en 2024.', 'Notre rôle : vous décharger des démarches. Création de société, documents officiels, calcul des taxes, contacts avec les services de l\'État, mais aussi visas, permis de travail, formation et coaching.'], chips: [{ l: 'Nos services', v: 'services' }, { l: 'L\'équipe', v: 'equipe' }, { l: 'Nos partenaires', v: 'partenaires' }] }
+    main: { say: ['NEW VIALO (anciennement AKILITECH) est un cabinet de solutions administratives et RH, basé à Lubumbashi et créé en 2024.', 'Notre rôle : vous décharger des démarches. Création de société, documents officiels, calcul des taxes, contacts avec les services de l\'État, mais aussi visas, permis de travail, formation et coaching.'], chips: [{ l: 'Nos services', v: 'services' }, { l: 'L\'équipe', v: 'equipe' }, { l: 'Nos partenaires', v: 'partenaires' }] }
   });
   topic('services', {
     kw: ['service', 'que faites vous', 'vous faites quoi', 'proposez', 'offre', 'activite', 'domaine', 'aide', 'help', 'menu', 'quoi'],
