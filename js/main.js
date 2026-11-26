@@ -55,9 +55,9 @@
   var typingEl = document.getElementById('typing-text');
   var phrases = [
     'Vos démarches, notre affaire.',
-    'Créez votre entreprise en toute sérénité.',
+    'On vous conseille, on s\'occupe du reste.',
     'RCCM, ID NAT, NIF, ARSP : on s\'en occupe.',
-    'Visas, permis de travail, formation.'
+    'Taxes, permis de travail, visas.'
   ];
   if (typingEl && !reduce) {
     var pi = 0, ci = phrases[0].length, del = true;

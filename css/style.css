@@ -87,6 +87,7 @@ h1,h2,h3,h4{ font-family:var(--font-head); line-height:1.15; font-weight:var(--h
 .logo{ display:flex; align-items:center; gap:10px; font-family:var(--font-head); font-weight:800; font-size:1.35rem; color:#fff; letter-spacing:.02em; }
 .logo img{ height:44px; width:auto; background:#fff; border-radius:50%; padding:2px; }
 .logo em{ font-style:normal; color:var(--yellow); }
+.logo span, .btn-nav{ white-space:nowrap; }
 #nav ul{ display:flex; align-items:center; gap:28px; }
 #nav a{ color:#fff; font-weight:600; font-size:.93rem; position:relative; padding:4px 0; }
 #nav a::after{ content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--yellow); transition:var(--transition); }
@@ -161,7 +162,7 @@ h1,h2,h3,h4{ font-family:var(--font-head); line-height:1.15; font-weight:var(--h
 .pillar:hover .pillar-icon{ transform:rotate(-8deg) scale(1.08); }
 .pillar h3{ font-size:1.55rem; margin-bottom:4px; }
 .pillar-head p{ font-size:.95rem; opacity:.8; }
-.pillar-list{ display:grid; gap:16px; margin-bottom:30px; position:relative; flex:1; }
+.pillar-list{ display:grid; gap:16px; margin-bottom:30px; position:relative; flex:1; align-content:start; }
 .pillar-list li{ display:flex; gap:14px; align-items:flex-start; padding:14px 16px; border-radius:14px; transition:var(--transition); }
 .pillar-admin .pillar-list li{ background:rgba(255,255,255,.05); }
 .pillar-admin .pillar-list li:hover{ background:rgba(255,255,255,.1); transform:translateX(6px); }
